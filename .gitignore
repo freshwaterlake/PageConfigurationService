@@ -1,0 +1,9 @@
+# Data Files
+data/
+
+# Dependency directories
+node_modules/
+
+# My Temp Files
+a.json
+b.json
