@@ -1,0 +1,104 @@
+{
+    "id": "jobPreferences",
+    "title": "Job / Internship Preferences",
+    "sections": ["jobPreferences"],
+    "breadCrumbs": [
+        { "URL": "https://miles.univariety.com/alumni/dashboard", "Name": "My Dashboard" },
+        { "URL": "https://miles.univariety.com/alumni/myprofile", "Name": "Profile" }
+    ],
+    "sectionRepository": [
+        {
+            "id": "jobPreferences",
+            "type": "SECTION_WITHOUT_HEADER",
+            "className": "col-md-12",
+            "controlGroup": [
+                {
+                    "id": "preferredJobLocation",
+                    "type": "MULTI_SELECT_WAI_1",
+                    "props": { "label": "Preferred Job Location", "className": "col-md-12" },
+                    "className": "col-md-12",
+                    "controlGroup": [
+                        {
+                            "id": "countryCode",
+                            "type": "SELECT",
+                            "props": { "label": "Country", "domainCategoryCode": "COUNTRY_CODE" },
+                            "className": "col-md-6"
+                        },
+                        {
+                            "id": "cityCode",
+                            "type": "SELECT",
+                            "props": { "label": "City", "domainCategoryCode": "CITY_CODE" },
+                            "className": "col-md-6"
+                        },
+                        {
+                            "id": "locationPreferenceCode",
+                            "type": "RADIO",
+                            "props": { "label": "Preference", "domainCategoryCode": "LOCATION_PREFERENCE_CODE" },
+                            "className": "col-md-6"
+                        }
+                    ]
+                },
+                {
+                    "id": "preferredIndustry",
+                    "type": "MULTI_SELECT_WAI_1",
+                    "props": { "label": "Preferred Industry", "className": "col-md-12" },
+                    "className": "col-md-12",
+                    "controlGroup": [
+                        {
+                            "id": "industryCode",
+                            "type": "SELECT",
+                            "props": { "label": "Industry", "domainCategoryCode": "INDUSTRY_CODE" },
+                            "className": "col-md-12"
+                        },
+                        {
+                            "id": "industryPreferenceCode",
+                            "type": "RADIO",
+                            "props": { "label": "Preference", "domainCategoryCode": "INDUSTRY_PREFERENCE_CODE" },
+                            "className": "col-md-12"
+                        }
+                    ]
+                },
+                {
+                    "id": "preferredFunctionalArea",
+                    "type": "MULTI_SELECT_WAI_1",
+                    "props": { "label": "Preferred Functional Area", "className": "col-md-12" },
+                    "className": "col-md-12",
+                    "controlGroup": [
+                        {
+                            "id": "functionalAreaCode",
+                            "type": "SELECT",
+                            "props": { "label": "Functional Area", "domainCategoryCode": "FUNCTIONAL_AREA_CODE" },
+                            "className": "col-md-12"
+                        },
+                        {
+                            "id": "functionalAreaPreferenceCode",
+                            "type": "RADIO",
+                            "props": { "label": "Preference", "domainCategoryCode": "FUNCTIONAL_AREA_PREFERENCE_CODE" },
+                            "className": "col-md-12"
+                        }
+                    ]
+                },
+                {
+                    "id": "dreamCompanies",
+                    "type": "MULTI_SELECT_WAI_1",
+                    "props": { "label": "Dream Companies", "className": "col-md-12" },
+                    "className": "col-md-12",
+                    "controlGroup": [
+                        {
+                            "id": "companyCode",
+                            "type": "SELECT",
+                            "props": { "label": "Company Name", "domainCategoryCode": "COMPANY_CODE" },
+                            "className": "col-md-12"
+                        },
+                        {
+                            "id": "companyPreferenceCode",
+                            "type": "RADIO",
+                            "props": { "label": "Preference", "domainCategoryCode": "COMPANY_PREFERENCE_CODE" },
+                            "className": "col-md-12"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
