@@ -1,99 +1,138 @@
 {
-    "id": "jobPreferences",
-    "title": "Job / Internship Preferences",
-    "sections": ["jobPreferences"],
+    "id": "higherStudiesPreferences",
+    "title": "Higher Studies Preferences",
+    "sections": ["higherStudiesPreferences"],
     "breadCrumbs": [
         { "URL": "https://miles.univariety.com/alumni/dashboard", "Name": "My Dashboard" },
         { "URL": "https://miles.univariety.com/alumni/myprofile", "Name": "Profile" }
     ],
     "sectionRepository": [
         {
-            "id": "jobPreferences",
+            "id": "higherStudiesPreferences",
             "type": "SECTION_WITHOUT_HEADER",
             "className": "col-md-12",
             "controlGroup": [
                 {
-                    "id": "preferredJobLocation",
-                    "type": "MULTI_SELECT_WAI_1",
-                    "props": { "label": "Preferred Job Location", "className": "col-md-12" },
+                    "id": "interestedInHigherStudiesCode",
+                    "type": "RADIO",
+                    "props": {
+                        "label": "Are you interested in higher studies ?",
+                        "domainCategoryCode": "INTERESTED_IN_HIGHER_STUDIES_CODE",
+                        "radioTextClassName": "col-md-2"
+                    },
+                    "className": "col-md-12",
+                    "controlGroup": []
+                },
+                {
+                    "id": "programTypeCode",
+                    "type": "RADIO",
+                    "props": {
+                        "label": "What would be your preferred program type?",
+                        "domainCategoryCode": "PROGRAM_TYPE_CODE",
+                        "radioTextClassName": "col-md-3"
+                    },
+                    "className": "col-md-12",
+                    "controlGroup": []
+                },
+                {
+                    "id": "modeOfProgramCode",
+                    "type": "RADIO",
+                    "props": {
+                        "label": "Preferred mode of program",
+                        "domainCategoryCode": "MODE_OF_PROGRAM_CODE",
+                        "radioTextClassName": "col-md-3"
+                    },
+                    "className": "col-md-12",
+                    "controlGroup": []
+                },
+                {
+                    "id": "preferredLocationOfStudy",
+                    "type": "MULTI_SELECT_WAI_3",
+                    "props": { "label": "Any preferred location of study?", "className": "col-md-12" },
                     "className": "col-md-12",
                     "controlGroup": [
                         {
                             "id": "countryCode",
                             "type": "SELECT",
-                            "props": { "label": "Country", "domainCategoryCode": "COUNTRY_CODE" },
-                            "className": "col-md-6"
+                            "props": { "domainCategoryCode": "COUNTRY_CODE" },
+                            "className": "col-md-12"
                         },
-                        {
-                            "id": "cityCode",
-                            "type": "SELECT",
-                            "props": { "label": "City", "domainCategoryCode": "CITY_CODE" },
-                            "className": "col-md-6"
-                        },
+                        { "id": "cityCode", "type": "SELECT", "props": { "domainCategoryCode": "CITY_CODE" }, "className": "col-md-12" },
                         {
                             "id": "locationPreferenceCode",
                             "type": "RADIO",
-                            "props": { "label": "Preference", "domainCategoryCode": "LOCATION_PREFERENCE_CODE" },
-                            "className": "col-md-6"
-                        }
-                    ]
-                },
-                {
-                    "id": "preferredIndustry",
-                    "type": "MULTI_SELECT_WAI_1",
-                    "props": { "label": "Preferred Industry", "className": "col-md-12" },
-                    "className": "col-md-12",
-                    "controlGroup": [
-                        {
-                            "id": "industryCode",
-                            "type": "SELECT",
-                            "props": { "label": "Industry", "domainCategoryCode": "INDUSTRY_CODE" },
-                            "className": "col-md-12"
-                        },
-                        {
-                            "id": "industryPreferenceCode",
-                            "type": "RADIO",
-                            "props": { "label": "Preference", "domainCategoryCode": "INDUSTRY_PREFERENCE_CODE" },
+                            "props": { "domainCategoryCode": "LOCATION_PREFERENCE_CODE" },
                             "className": "col-md-12"
                         }
                     ]
                 },
                 {
-                    "id": "preferredFunctionalArea",
-                    "type": "MULTI_SELECT_WAI_1",
-                    "props": { "label": "Preferred Functional Area", "className": "col-md-12" },
+                    "id": "preferredFieldOfStudy",
+                    "type": "MULTI_SELECT_WAI_3",
+                    "props": { "label": "Any preferred field of study?", "className": "col-md-12" },
                     "className": "col-md-12",
                     "controlGroup": [
                         {
-                            "id": "functionalAreaCode",
+                            "id": "fieldOfStudyCode",
                             "type": "SELECT",
-                            "props": { "label": "Functional Area", "domainCategoryCode": "FUNCTIONAL_AREA_CODE" },
+                            "props": { "domainCategoryCode": "FIELD_OF_STUDY_CODE" },
                             "className": "col-md-12"
                         },
                         {
-                            "id": "functionalAreaPreferenceCode",
+                            "id": "fieldOfStudyPreferenceCode",
                             "type": "RADIO",
-                            "props": { "label": "Preference", "domainCategoryCode": "FUNCTIONAL_AREA_PREFERENCE_CODE" },
+                            "props": { "domainCategoryCode": "FIELD_OF_STUDY_PREFERENCE_CODE", "radioTextClassName": "col-md-3" },
                             "className": "col-md-12"
                         }
                     ]
                 },
                 {
-                    "id": "dreamCompanies",
-                    "type": "MULTI_SELECT_WAI_1",
-                    "props": { "label": "Dream Companies", "className": "col-md-12" },
+                    "id": "preferredUniversities",
+                    "type": "MULTI_SELECT_WAI_3",
+                    "props": { "label": "Preferred Universities", "className": "col-md-12" },
                     "className": "col-md-12",
                     "controlGroup": [
                         {
-                            "id": "companyCode",
+                            "id": "universityCode",
                             "type": "SELECT",
-                            "props": { "label": "Company Name", "domainCategoryCode": "COMPANY_CODE" },
+                            "props": { "domainCategoryCode": "UNIVERSITY_CODE" },
                             "className": "col-md-12"
                         },
                         {
-                            "id": "companyPreferenceCode",
+                            "id": "universityPreferenceCode",
                             "type": "RADIO",
-                            "props": { "label": "Preference", "domainCategoryCode": "COMPANY_PREFERENCE_CODE" },
+                            "props": { "domainCategoryCode": "UNIVERSITY_PREFERENCE_CODE", "radioTextClassName": "col-md-3" },
+                            "className": "col-md-12"
+                        }
+                    ]
+                },
+                {
+                    "id": "confidentOfGettingAdmission",
+                    "type": "RADIO",
+                    "props": {
+                        "label": "Are you confident about getting admission to your preferred universities?",
+                        "domainCategoryCode": "CONFIDENT_OF_GETTING_ADMISSION",
+                        "radioTextClassName": "col-md-4"
+                    },
+                    "className": "col-md-12",
+                    "controlGroup": []
+                },
+                {
+                    "id": "preferredSessionOfAdmission",
+                    "type": "YEAR_AND_MONTH",
+                    "props": { "label": "Preferred Session of Admission", "className": "col-md-12" },
+                    "className": "col-md-12",
+                    "controlGroup": [
+                        {
+                            "id": "sessionOfAdmissionYearCode",
+                            "type": "SELECT",
+                            "props": { "domainCategoryCode": "STUDY_YEAR_CODE" },
+                            "className": "col-md-12"
+                        },
+                        {
+                            "id": "sessionOfAdmissionMonthMonth",
+                            "type": "SELECT",
+                            "props": { "domainCategoryCode": "MONTH_CODE" },
                             "className": "col-md-12"
                         }
                     ]

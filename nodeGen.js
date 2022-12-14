@@ -1,5 +1,5 @@
 const getPageJSON = (pageId, data) => {
-    const page = data['pages'].find((pageInfo) => (pageInfo.id = pageId));
+    const page = data['pages'].find((pageInfo) => pageInfo.id === pageId);
 
     return {
         id: pageId,
@@ -53,7 +53,9 @@ const getSectionControlGroupJSON = (sectionId, data) => {
 
     sectionControls.map((control) => {
         const subControlGroup = [];
-        const isComplexControl = data['controlTypeMaster'].find((controlType) => (controlType['controlType'] = control['type']));
+        const isComplexControl = data['controlTypeMaster'].find((controlType) => controlType['controlType'] === control['type'])[
+            'isComplex'
+        ];
 
         const { tableName, columnName, id, ...controlProps } = {
             ...data['controlProps'].find((controlProp) => controlProp.id === control.id),
@@ -75,7 +77,7 @@ const getSectionControlGroupJSON = (sectionId, data) => {
 };
 
 const getSectionComplexControl_ControlGroupJSON = (complexControl, data) => {
-    const isComplexControl = data['controlTypeMaster'].find((controlType) => (controlType['controlType'] = complexControl['type']));
+    const isComplexControl = data['controlTypeMaster'].find((controlType) => controlType['controlType'] === complexControl['type']);
     if (!isComplexControl) return [];
 
     const controlGroup = [];
@@ -86,16 +88,39 @@ const getSectionComplexControl_ControlGroupJSON = (complexControl, data) => {
         const { tableName, columnName, id, ...controlProps } = data['controlProps'].find(
             (controlProp) => controlProp.id === subControl.controlId
         );
+
         const controlJSON = {
             id: subControl.controlId,
             type: subControl.type,
             className: subControl.className,
-            props: controlProps,
+            props: processControlPropsForComplexControls(complexControl, controlProps),
         };
         controlGroup.push(controlJSON);
     });
 
     return controlGroup;
+};
+
+const processControlPropsForComplexControls = (complexControl, controlProps) => {
+    switch (complexControl['type']) {
+        case 'MULTI_SELECT_WAI_1': {
+            const { label, ...rest } = controlProps;
+            return rest;
+        }
+
+        case 'MULTI_SELECT_WAI_3': {
+            const { label, ...rest } = controlProps;
+            return rest;
+        }
+
+        case 'YEAR_AND_MONTH': {
+            const { label, ...rest } = controlProps;
+            return rest;
+        }
+
+        default:
+        //
+    }
 };
 
 // const getSectionControlSubControlGroupJSON = (subControlsText, data) => {

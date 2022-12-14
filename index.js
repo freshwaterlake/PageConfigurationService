@@ -4,7 +4,7 @@ const db = require('./db.js');
 const excel = require('./excelReader.js');
 
 // Logic Starts
-const pages = ['jobPreferences', 'skillProfile', 'higherStudiesPreferences'];
+const pages = ['higherStudiesPreferences'];
 excel.getExcelData().then((data) => {
     pages.map((page) => {
         const pageJson = nodeGen.getPageJSON(page, data);

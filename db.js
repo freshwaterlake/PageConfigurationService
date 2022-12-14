@@ -17,7 +17,11 @@ const saveSection = (sectionName, json) => {
 };
 
 const savePage = (pageName, json) => {
-    const query = 'INSERT INTO app_config.page_config(page_name, page_json, created_at, updated_at) VALUES (?, ?, NOW(), NOW())';
+    const query = `INSERT INTO app_config.page_config(page_name, page_json, created_at, updated_at)
+        VALUES (?, ?, NOW(), NOW())
+        ON DUPLICATE KEY
+        UPDATE page_json = VALUES(page_json), updated_at = NOW()`;
+
     getPool().query(query, [pageName, json]);
 };
 
