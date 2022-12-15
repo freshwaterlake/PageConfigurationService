@@ -4,11 +4,10 @@ const db = require('./db.js');
 const excel = require('./excelReader.js');
 
 // Logic Starts
-const pages = ['higherStudiesPreferences'];
 excel.getExcelData().then((data) => {
-    pages.map((page) => {
-        const pageJson = nodeGen.getPageJSON(page, data);
-        db.savePage(page, JSON.stringify(pageJson));
+    data['pages'].map((page) => {
+        const pageJson = nodeGen.getPageJSON(page.id, data);
+        db.savePage(page.id, JSON.stringify(pageJson));
     });
 });
 

@@ -1,7 +1,16 @@
 const express = require('express');
 const db = require('./db.js');
+var cors = require('cors');
 const app = express();
-const port = 3000;
+
+const port = 3008;
+
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
