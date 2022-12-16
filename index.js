@@ -13,4 +13,4 @@ excel.getExcelData().then((data) => {
 
 // Exit after successfully executing the script
 console.log('-----Done----');
-setTimeout(() => process.exit(), 3000);
+setTimeout(() => process.exit(), 6000);
