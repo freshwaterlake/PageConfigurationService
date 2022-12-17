@@ -1,11 +1,6 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catch-async');
-const { pageConfigService } = require('../services');
-
-const refresh = catchAsync(async (req, res) => {
-    const status = await pageConfigService.refresh();
-    res.status(httpStatus.OK).send();
-});
+const { pageConfigService } = require('../services/page-config.service');
 
 const getPageConfig = catchAsync(async (req, res) => {
     console.log(`GetPageConfig with params ${req.params.pageId}`);
@@ -13,4 +8,4 @@ const getPageConfig = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send(pageConfig);
 });
 
-module.exports = { refresh, getPageConfig };
+module.exports = { getPageConfig };

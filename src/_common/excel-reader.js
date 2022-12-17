@@ -7,8 +7,7 @@ const getExcelData = async (fileUrl) => {
     return new Promise((resolve, reject) => {
         request.get(fileUrl, { encoding: null }, function (err, res, data) {
             if (err || res.statusCode != 200) {
-                console.log(res.statusCode);
-                return;
+                reject(res.statusCode);
             }
             const buf = Buffer.from(data);
             const workbook = XLSX.read(buf);

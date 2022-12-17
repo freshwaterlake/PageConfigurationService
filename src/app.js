@@ -24,12 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(xss());
 
 // gzip compression
-app.use(compression());
+// app.use(compression());
 
 // enable cors
 app.use(cors());
 app.options('*', cors());
-app.use('/v1', routes);
+app.use('/api/v1', routes);
 
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));

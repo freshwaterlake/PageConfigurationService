@@ -7,18 +7,13 @@ const save = (pageName, json) => {
         UPDATE page_json = VALUES(page_json), updated_at = NOW()`;
 
     return new Promise((resolve, reject) =>
-        db.getPool().query(query, [pageName, json], (err, result) => (err ? reject(err) : resolve(result)))
+        db.getPool().query(query, [pageName, JSON.stringify(json)], (err, result) => (err ? reject(err) : resolve(result)))
     );
 };
 
 const get = async (pageName) => {
     console.log(`Repository::GetPageConfig with params ${pageName}`);
     const query = 'SELECT page_json FROM app_config.page_config WHERE page_name = ?';
-
-    // getPool().query(query, [pageName], (err, result) => {
-    //     if (err) throw err;
-    //     return result;
-    // });
 
     return new Promise((resolve, reject) =>
         db.getPool().query(query, [pageName], (err, result) => (err ? reject(err) : resolve(result[0]['page_json'])))
