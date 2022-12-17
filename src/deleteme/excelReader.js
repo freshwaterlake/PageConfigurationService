@@ -5,15 +5,16 @@ const fileURL =
     'https://docs.google.com/feeds/download/spreadsheets/Export?key=1mRYkMBgQx4qig3pd88zyRnkJXlMEoay634fLTv_Aoy0&exportFormat=xlsx';
 
 const getExcelData = () => {
-    let excelData = {
-        pages: [],
-        sections: [],
-        sectionControls: [],
-        controlProps: [],
-        complexControls: [],
-        breadCrumbs: [],
-        controlTypeMaster: [],
-    };
+    const excelData = {};
+    // let excelData = {
+    //     pages: [],
+    //     sections: [],
+    //     sectionControls: [],
+    //     controlProps: [],
+    //     complexControls: [],
+    //     breadCrumbs: [],
+    //     controlTypeMaster: [],
+    // };
 
     return new Promise((resolve, reject) => {
         request.get(fileURL, { encoding: null }, function (err, res, data) {

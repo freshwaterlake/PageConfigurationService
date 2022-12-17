@@ -1,96 +1,46 @@
 {
-    "id": "myJobPreferInfo",
-    "title": "Job / Internship Preferences",
-    "sections": ["jobPreferences"],
+    "id": "mySkillsInfo",
+    "title": "Show off your skills",
+    "sections": ["skillProfile"],
     "breadCrumbs": [
         { "URL": "https://miles.univariety.com/alumni/dashboard", "Name": "My Dashboard" },
         { "URL": "https://miles.univariety.com/alumni/myprofile", "Name": "Profile" }
     ],
     "sectionRepository": [
         {
-            "id": "jobPreferences",
+            "id": "skillProfile",
             "type": "SECTION_WITHOUT_HEADER",
             "className": "col-md-12",
             "controlGroup": [
+                { "id": "resume", "type": "FILE_UPLOAD", "props": { "label": "Resume" }, "className": "col-md-12", "controlGroup": [] },
                 {
-                    "id": "preferredJobLocation",
+                    "id": "skills",
                     "type": "MULTI_SELECT_WAI_3",
-                    "props": { "label": "Preferred Job Location", "className": "col-md-12" },
+                    "props": { "label": "Mention up to 5 skills (Apologies for only 5)", "className": "col-md-12" },
                     "className": "col-md-12",
                     "controlGroup": [
+                        { "id": "skillCode", "type": "SELECT", "props": { "domainCategoryCode": "SKILL_CODE" }, "className": "col-md-12" },
                         {
-                            "id": "countryCode",
-                            "type": "SELECT",
-                            "props": { "domainCategoryCode": "COUNTRY_CODE" },
-                            "className": "col-md-6"
-                        },
-                        { "id": "cityCode", "type": "SELECT", "props": { "domainCategoryCode": "CITY_CODE" }, "className": "col-md-6" },
-                        {
-                            "id": "locationPreferenceCode",
+                            "id": "skillPreferenceCode",
                             "type": "RADIO",
-                            "props": { "domainCategoryCode": "LOCATION_PREFERENCE_CODE", "radioTextClassName": "col-md-4" },
-                            "className": "col-md-6"
-                        }
-                    ]
-                },
-                {
-                    "id": "preferredIndustry",
-                    "type": "MULTI_SELECT_WAI_3",
-                    "props": { "label": "Preferred Industry", "className": "col-md-12" },
-                    "className": "col-md-12",
-                    "controlGroup": [
-                        {
-                            "id": "industryCode",
-                            "type": "SELECT",
-                            "props": { "domainCategoryCode": "INDUSTRY_CODE" },
-                            "className": "col-md-12"
-                        },
-                        {
-                            "id": "industryPreferenceCode",
-                            "type": "RADIO",
-                            "props": { "domainCategoryCode": "INDUSTRY_PREFERENCE_CODE", "radioTextClassName": "col-md-4" },
+                            "props": { "domainCategoryCode": "SKILL_PREFERENCE_CODE" },
                             "className": "col-md-12"
                         }
                     ]
                 },
                 {
-                    "id": "preferredFunctionalArea",
-                    "type": "MULTI_SELECT_WAI_3",
-                    "props": { "label": "Preferred Functional Area", "className": "col-md-12" },
-                    "className": "col-md-12",
-                    "controlGroup": [
-                        {
-                            "id": "functionalAreaCode",
-                            "type": "SELECT",
-                            "props": { "domainCategoryCode": "FUNCTIONAL_AREA_CODE" },
-                            "className": "col-md-12"
-                        },
-                        {
-                            "id": "functionalAreaPreferenceCode",
-                            "type": "RADIO",
-                            "props": { "domainCategoryCode": "FUNCTIONAL_AREA_PREFERENCE_CODE", "radioTextClassName": "col-md-4" },
-                            "className": "col-md-12"
-                        }
-                    ]
+                    "id": "interestedInUpskillingCode",
+                    "type": "RADIO",
+                    "props": { "label": "Interested in upskilling?", "domainCategoryCode": "INTERESTED_IN_UPSKILLING_CODE" },
+                    "controlGroup": []
                 },
                 {
-                    "id": "dreamCompanies",
+                    "id": "skillToTarget",
                     "type": "MULTI_SELECT_WAI_3",
-                    "props": { "label": "Dream Companies", "className": "col-md-12" },
+                    "props": { "label": "Which skills would you want to target", "className": "col-md-12" },
                     "className": "col-md-12",
                     "controlGroup": [
-                        {
-                            "id": "companyCode",
-                            "type": "SELECT",
-                            "props": { "domainCategoryCode": "COMPANY_CODE" },
-                            "className": "col-md-12"
-                        },
-                        {
-                            "id": "companyPreferenceCode",
-                            "type": "RADIO",
-                            "props": { "domainCategoryCode": "COMPANY_PREFERENCE_CODE", "radioTextClassName": "col-md-4" },
-                            "className": "col-md-12"
-                        }
+                        { "id": "skillCode", "type": "SELECT", "props": { "domainCategoryCode": "SKILL_CODE" }, "className": "col-md-12" }
                     ]
                 }
             ]

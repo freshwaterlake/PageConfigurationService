@@ -123,33 +123,4 @@ const processControlPropsForComplexControls = (complexControl, controlProps) => 
     }
 };
 
-// const getSectionControlSubControlGroupJSON = (subControlsText, data) => {
-//     const controlGroup = [];
-
-//     if (!subControlsText) return controlGroup;
-
-//     subControlsText
-//         .split(',')
-//         .map((value) => value.trim())
-//         .map((subControlText) => {
-//             const [controlId, type, className] = [
-//                 ...subControlText
-//                     .trim()
-//                     .split('&')
-//                     .map((value) => value.trim()),
-//             ];
-//             // console.log(`processing controlId: ${controlId}, type: ${type}, className: ${className}`);
-//             const { tableName, columnName, id, ...controlProps } = data['controlProps'].find((controlProp) => controlProp.id === controlId);
-//             const controlJSON = {
-//                 id: controlId,
-//                 type: type,
-//                 className: className,
-//                 props: controlProps,
-//             };
-//             controlGroup.push(controlJSON);
-//         });
-
-//     return controlGroup;
-// };
-
 module.exports = { getPageJSON, getSectionJSON, getSectionControlGroupJSON };
