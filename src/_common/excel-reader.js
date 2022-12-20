@@ -14,7 +14,7 @@ const getExcelData = async (fileUrl) => {
 
             const sheets = workbook.SheetNames;
 
-            for (let i = 0; i < sheets.length - 1; i++) {
+            for (let i = 0; i < sheets.length; i++) {
                 excelData[workbook.SheetNames[i]] = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[i]]);
             }
             resolve(excelData);

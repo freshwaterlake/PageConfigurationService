@@ -10,6 +10,7 @@ const envVarsSchema = Joi.object()
         PORT: Joi.number().default(3008),
         PAGE_CONFIG_FILE_URL: Joi.string().required().description('Page Config File URL'),
         ACTIVITY_CONFIG_FILE_URL: Joi.string().required().description('Activity Config File URL'),
+        DOMAIN_DATA_CONFIG_FILE_URL: Joi.string().required().description('Domain Data Config File URL'),
         JWT_SECRET: Joi.string().required().description('JWT secret key'),
         JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('minutes after which access tokens expire'),
         JWT_REFRESH_EXPIRATION_DAYS: Joi.number().default(30).description('days after which refresh tokens expire'),
@@ -37,5 +38,6 @@ module.exports = {
     fileUrl: {
         pageConfigFileUrl: envVars.PAGE_CONFIG_FILE_URL,
         activityConfigFileUrl: envVars.ACTIVITY_CONFIG_FILE_URL,
+        domainDataFileUrl: envVars.DOMAIN_DATA_CONFIG_FILE_URL,
     },
 };
