@@ -11,3 +11,7 @@ In Settings.json, use "files.exclude" to hide the node_modules and other files
 # HTTP Status Codes
 
 https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+
+# Flow
+
+Route -> Controller -> Service -> Repository

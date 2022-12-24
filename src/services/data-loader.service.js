@@ -1,4 +1,4 @@
-const pageConfigDataLoaderService = require('./page-config-data-loader.service');
+const pageConfigDataLoaderService = require('./page-config-data-loader-v2.service');
 const appConfigDataLoaderService = require('./app-config-data-loader.service');
 const domainDataLoaderService = require('./domain-data-loader.service');
 

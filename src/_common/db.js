@@ -11,4 +11,15 @@ const getPool = () =>
         queueLimit: 0,
     });
 
-module.exports = { getPool };
+const getOldDBPool = () =>
+    mysql.createPool({
+        host: 'univariety.xyz',
+        user: 'naveen',
+        password: 'n@v33n432',
+        database: 'univarie_uni_db',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+    });
+
+module.exports = { getPool, getOldDBPool };
