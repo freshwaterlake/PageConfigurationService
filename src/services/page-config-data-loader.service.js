@@ -3,7 +3,7 @@ const excelReader = require('../_common/excel-reader');
 const config = require('../config/config');
 
 const refresh = async () => {
-    console.log(`Trying to read the file : ${config.fileUrl.pageConfigFileUrl}`);
+    // console.log(`Trying to read the file : ${config.fileUrl.pageConfigFileUrl}`);
     excelReader.getExcelData(config.fileUrl.pageConfigFileUrl).then((data) => {
         data['pages'].map((page) => {
             const pageId = page['id'];

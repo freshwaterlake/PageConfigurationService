@@ -3,7 +3,7 @@ const excelReader = require('../_common/excel-reader');
 const config = require('../config/config');
 
 const refresh = async () => {
-    console.log(`Trying to read the file : ${config.fileUrl.pageConfigFileUrl}`);
+    // console.log(`Trying to read the file : ${config.fileUrl.pageConfigFileUrl}`);
     excelReader.getExcelData(config.fileUrl.pageConfigFileUrl).then((data) => {
         data['pages'].map((page) => {
             const pageId = page['id'];
@@ -54,13 +54,14 @@ const getSectionJSON = (sectionId, data) => {
     return {
         id: sectionId,
         title: section['title'] === 'NO_TITLE' ? '' : section['title'],
+        dataId: section['dataId'],
         type: section['type'],
         className: section['className'],
         controlGroup: getSectionControlGroupJSON(section['combinedKey'], data),
     };
 };
 
-const controlIdFromTableColumnId = (tableColumnId, data) =>
+const getControlIdFromTableColumnId = (tableColumnId, data) =>
     data['controlProps'].find((control) => control.tableColumnId === tableColumnId)['id'];
 
 const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
@@ -73,30 +74,28 @@ const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
             'isComplex'
         ];
 
-        const { tableName, columnName, id, ...controlProps } = {
-            ...data['controlProps'].find((controlProp) => controlProp.id === control.id),
-            tableName: null,
-            columnName: null,
-        };
-
         if (isComplexControl) {
             controlGroup.push({
-                id: control.id,
+                id: control.tableColumnId,
                 type: control.type,
                 className: control.className,
-                props: isComplexControl
-                    ? { label: control['label'], className: control['className'] }
-                    : { ...controlProps, label: control['label'] },
+                props: { label: control['label'], className: control['className'] },
                 controlGroup: getSectionComplexControl_ControlGroupJSON(control, data),
             });
         } else {
+            const { tableName, columnName, id, tableColumnId, ...controlProps } = {
+                ...data['controlProps'].find(
+                    (controlProp) => controlProp.id === getControlIdFromTableColumnId(control.tableColumnId, data)
+                ),
+                tableName: null,
+                columnName: null,
+            };
+
             controlGroup.push({
-                id: controlIdFromTableColumnId(control.tableColumnId, data),
+                id: getControlIdFromTableColumnId(control.tableColumnId, data),
                 type: control.type,
                 className: control.className,
-                props: isComplexControl
-                    ? { label: control['label'], className: control['className'] }
-                    : { ...controlProps, label: control['label'] },
+                props: { ...controlProps, label: control['label'] },
             });
         }
     });

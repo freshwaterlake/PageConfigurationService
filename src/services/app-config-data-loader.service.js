@@ -3,7 +3,7 @@ const excelReader = require('../_common/excel-reader');
 const config = require('../config/config');
 
 const refresh = () => {
-    console.log(`Trying to read the file : ${config.fileUrl.activityConfigFileUrl}`);
+    // console.log(`Trying to read the file : ${config.fileUrl.activityConfigFileUrl}`);
 
     excelReader.getExcelData(config.fileUrl.activityConfigFileUrl).then((data) => {
         const activityGroups = [];

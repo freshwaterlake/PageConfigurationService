@@ -14,6 +14,6 @@ request.get(fileURL, { encoding: null }, function (err, res, data) {
 
     var sheet1 = workbook.Sheets[workbook.SheetNames[0]];
     var sheet2 = workbook.Sheets[workbook.SheetNames[1]];
-    console.log(XLSX.utils.sheet_to_json(sheet1));
-    console.log(XLSX.utils.sheet_to_json(sheet2));
+    // console.log(XLSX.utils.sheet_to_json(sheet1));
+    // console.log(XLSX.utils.sheet_to_json(sheet2));
 });

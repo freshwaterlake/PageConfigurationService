@@ -18,7 +18,7 @@ const get = async (pageName) => {
 
     return new Promise((resolve, reject) =>
         db.getPool().query(query, [pageName], (err, result) => {
-            console.log(JSON.stringify(result));
+            // console.log(JSON.stringify(result));
             const data = fc.isEmpty(result) ? {} : result[0]['page_json'];
             err ? reject(err) : resolve(data);
         })
