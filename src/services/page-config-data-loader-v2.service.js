@@ -7,8 +7,7 @@ const refresh = async () => {
     excelReader.getExcelData(config.fileUrl.pageConfigFileUrl).then((data) => {
         data["pages"].map((page) => {
             const pageId = page["id"];
-            // repository.save(pageId, getPageJSON(pageId, data));
-            repository.save(pageId, getPageJSON("jobPosting", data));
+            repository.save(pageId, getPageJSON(pageId, data));
         });
     });
 };
