@@ -15,3 +15,5 @@ https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 # Flow
 
 Route -> Controller -> Service -> Repository
+
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html

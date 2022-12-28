@@ -1,27 +1,28 @@
-const repository = require('../repository/page-config.repository');
-const excelReader = require('../_common/excel-reader');
-const config = require('../config/config');
+const repository = require("../repository/page-config.repository");
+const excelReader = require("../_common/excel-reader");
+const config = require("../config/config");
 
 const refresh = async () => {
     // console.log(`Trying to read the file : ${config.fileUrl.pageConfigFileUrl}`);
     excelReader.getExcelData(config.fileUrl.pageConfigFileUrl).then((data) => {
-        data['pages'].map((page) => {
-            const pageId = page['id'];
-            repository.save(pageId, getPageJSON(pageId, data));
+        data["pages"].map((page) => {
+            const pageId = page["id"];
+            // repository.save(pageId, getPageJSON(pageId, data));
+            repository.save(pageId, getPageJSON("jobPosting", data));
         });
     });
 };
 
 // Private Functions
 const getPageJSON = (pageId, data) => {
-    const page = data['pages'].find((pageInfo) => pageInfo.id === pageId);
+    const page = data["pages"].find((pageInfo) => pageInfo.id === pageId);
 
-    const sections = data['sections'].filter((section) => section.pageId === pageId).map((data) => data.id);
+    const sections = data["sections"].filter((section) => section.pageId === pageId);
 
     return {
         ...page,
-        breadCrumbs: getBreadCrumbs(page['breadCrumbs'], data),
-        sections: sections,
+        breadCrumbs: getBreadCrumbs(page["breadCrumbs"], data),
+        sections: sections.map((section) => section.id),
         sectionRepository: getSectionRepository(sections, data),
     };
 };
@@ -31,10 +32,10 @@ const getBreadCrumbs = (breadCrumbsText, data) => {
     if (!breadCrumbsText) return [];
 
     breadCrumbsText
-        .split(',')
+        .split(",")
         .map((value) => value.trim())
         .map((breadCrumb) => {
-            breadCrumbsColl.push(data['breadCrumbs'].find((bc) => bc['Name'] === breadCrumb));
+            breadCrumbsColl.push(data["breadCrumbs"].find((bc) => bc["Name"] === breadCrumb));
         });
 
     return breadCrumbsColl;
@@ -44,47 +45,51 @@ const getSectionRepository = (sections, data) => {
     const sectionRepository = [];
     if (sections?.length === 0) return sectionRepository;
 
-    sections?.map((sectionId) => sectionRepository.push(getSectionJSON(sectionId, data)));
+    sections?.map((section) => sectionRepository.push(getSectionJSON(section["combinedKey"], data)));
 
     return sectionRepository;
 };
 
-const getSectionJSON = (sectionId, data) => {
-    const section = data['sections'].find((section) => section.id === sectionId);
+const getSectionJSON = (sectionKey, data) => {
+    const section = data["sections"].find((section) => section.combinedKey === sectionKey);
     return {
-        id: sectionId,
-        title: section['title'] === 'NO_TITLE' ? '' : section['title'],
-        dataId: section['dataId'],
-        type: section['type'],
-        className: section['className'],
-        controlGroup: getSectionControlGroupJSON(section['combinedKey'], data),
+        id: section["id"],
+        title: section["title"] === "NO_TITLE" ? "" : section["title"],
+        dataId: section["dataId"],
+        type: section["type"],
+        className: section["className"],
+        controlGroup: getSectionControlGroupJSON(section["combinedKey"], data),
     };
 };
 
 const getControlIdFromTableColumnId = (tableColumnId, data) =>
-    data['controlProps'].find((control) => control.tableColumnId === tableColumnId)['id'];
+    data["controlProps"].find((control) => control.tableColumnId === tableColumnId)["id"];
 
 const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
-    const sectionControls = data['sectionControls'].filter((control) => control.sectionId === sectionCombinedKey);
+    const sectionControls = data["sectionControls"].filter((control) => control.sectionKey === sectionCombinedKey);
     const controlGroup = [];
 
     sectionControls.map((control) => {
         const subControlGroup = [];
-        const isComplexControl = data['controlTypeMaster'].find((controlType) => controlType['controlTypeCode'] === control['type'])[
-            'isComplex'
+        const isComplexControl = data["controlTypeMaster"].find((controlType) => controlType["controlTypeCode"] === control["type"])[
+            "isComplex"
         ];
 
         if (isComplexControl) {
             controlGroup.push({
                 id: control.tableColumnId,
                 type: control.type,
+                dataId: control.dataId,
                 className: control.className,
-                props: { label: control['label'], className: control['className'] },
+                props: {
+                    label: control["label"],
+                    className: control["className"],
+                },
                 controlGroup: getSectionComplexControl_ControlGroupJSON(control, data),
             });
         } else {
             const { tableName, columnName, id, tableColumnId, ...controlProps } = {
-                ...data['controlProps'].find(
+                ...data["controlProps"].find(
                     (controlProp) => controlProp.id === getControlIdFromTableColumnId(control.tableColumnId, data)
                 ),
                 tableName: null,
@@ -95,7 +100,7 @@ const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
                 id: getControlIdFromTableColumnId(control.tableColumnId, data),
                 type: control.type,
                 className: control.className,
-                props: { ...controlProps, label: control['label'] },
+                props: { ...controlProps, label: control["label"] },
             });
         }
     });
@@ -104,19 +109,20 @@ const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
 };
 
 const getSectionComplexControl_ControlGroupJSON = (complexControl, data) => {
-    const isComplexControl = data['controlTypeMaster'].find((controlType) => controlType['controlTypeCode'] === complexControl['type']);
+    const isComplexControl = data["controlTypeMaster"].find((controlType) => controlType["controlTypeCode"] === complexControl["type"]);
     if (!isComplexControl) return [];
 
     const controlGroup = [];
 
-    const subControls = data['complexControls'].filter((subControl) => subControl.id === complexControl.tableColumnId);
+    const subControls = data["complexControls"].filter((subControl) => subControl.id === complexControl.tableColumnId);
 
     subControls.map((subControl) => {
-        const { tableName, columnName, id, ...controlProps } = data['controlProps'].find(
+        const { tableName, columnName, id, ...controlProps } = data["controlProps"].find(
             (controlProp) => controlProp.tableColumnId === subControl.tableColumnId
         );
-
-        const { tableColumnId, ...complexControlProps } = { ...processControlPropsForComplexControls(complexControl, controlProps) };
+        const { tableColumnId, ...complexControlProps } = {
+            ...processControlPropsForComplexControls(complexControl, controlProps),
+        };
 
         const controlJSON = {
             id: id,
@@ -131,24 +137,24 @@ const getSectionComplexControl_ControlGroupJSON = (complexControl, data) => {
 };
 
 const processControlPropsForComplexControls = (complexControl, controlProps) => {
-    switch (complexControl['type']) {
-        case 'MULTI_SELECT_WAI_1': {
+    switch (complexControl["type"]) {
+        case "MULTI_SELECT_WAI_1": {
             const { label, ...rest } = controlProps;
             return rest;
         }
 
-        case 'MULTI_SELECT_WAI_3': {
+        case "MULTI_SELECT_WAI_3": {
             const { label, ...rest } = controlProps;
             return rest;
         }
 
-        case 'YEAR_AND_MONTH': {
+        case "YEAR_AND_MONTH": {
             const { label, ...rest } = controlProps;
             return rest;
         }
 
         default:
-        //
+            return controlProps;
     }
 };
 
