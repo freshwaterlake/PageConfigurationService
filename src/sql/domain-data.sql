@@ -15,12 +15,14 @@ SELECT 'GRADE_D_CODE' categoryCode, CONCAT(IF(VALUE=0, '', VALUE), 'D') code,  C
 SELECT 'GRADE_E_CODE' categoryCode, CONCAT(IF(VALUE=0, '', VALUE), 'E') code,  CONCAT(VALUE, 'E') value, NULL parentCode, NULL displayOrder FROM grade UNION ALL 
 
 SELECT 'PAST_YEAR_CODE' categoryCode, VALUE code,  value, NULL parentCode, NULL displayOrder FROM PastYears UNION ALL 
-SELECT 'FUTURE_YEAR_CODE' categoryCode, VALUE code,  value, NULL parentCode, NULL displayOrder 
-FROM FutureYears UNION ALL 
+
+SELECT 'FUTURE_YEAR_CODE' categoryCode, VALUE code,  value, NULL parentCode, NULL displayOrder FROM FutureYears UNION ALL 
 
 SELECT 'EDUCATIONAL_OR_EMPLOYMENT_STATUS_CODE' categoryCode, current_status_id code, current_status value, NULL parentCode, priority displayOrder FROM alumni2_currentstatuses UNION ALL
 
 SELECT 'COUNTRY_CODE' categoryCode, country_id code, country_name value, NULL parentCode, display_order displayOrder FROM tbl_country_master WHERE is_active = 'Y' UNION ALL
+
+SELECT 'MOBILE_COUNTRY_CODE' categoryCode, country_id CODE, CONCAT("(+", phone_code, ")  ",country_name) VALUE, NULL parentCode, display_order displayOrder FROM tbl_country_master WHERE is_active = 'Y' UNION ALL
 
 SELECT 'CITY_CODE' categoryCode, city_id code, city_name value, country_id parentCode, display_order displayOrder FROM tbl_city_master WHERE is_active = 'Y' UNION ALL
 
