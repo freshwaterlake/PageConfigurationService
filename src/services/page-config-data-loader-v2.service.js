@@ -79,6 +79,9 @@ const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
                 id: control.tableColumnId,
                 type: control.type,
                 dataId: control.dataId,
+                required: control.required,
+                customValidations: control["customValidations"],
+                hideExpression: control["hideExpression"],
                 className: control.className,
                 props: {
                     label: control["label"],
@@ -99,6 +102,9 @@ const getSectionControlGroupJSON = (sectionCombinedKey, data) => {
                 id: getControlIdFromTableColumnId(control.tableColumnId, data),
                 type: control.type,
                 className: control.className,
+                required: control.required,
+                customValidations: control["customValidations"],
+                hideExpression: control["hideExpression"],
                 props: { ...controlProps, label: control["label"] },
             });
         }

@@ -11,7 +11,49 @@
             "type": "SECTION_WITHOUT_HEADER",
             "title": "",
             "className": "col-md-12",
-            "controlGroup": [{ "id": "firstName", "type": "TEXT", "props": { "label": "Test" }, "className": "col-md-4" }]
+            "controlGroup": [
+                {
+                    "id": "firstName",
+                    "type": "TEXT",
+                    "props": { "label": "First Name", "inputMode": "text", "maxLength": 10, "minLength": 3 },
+                    "required": 1,
+                    "className": "col-md-4"
+                },
+                {
+                    "id": "genderCode",
+                    "type": "RADIO",
+                    "props": {
+                        "label": "Gender Code",
+                        "required": 1,
+                        "domainCategoryCode": "GENDER_CODE",
+                        "radioTextClassName": "col-md-4"
+                    },
+                    "required": 1,
+                    "className": "col-md-4"
+                },
+                {
+                    "id": "countryCode",
+                    "type": "SELECT",
+                    "props": { "label": "Country Code", "domainCategoryCode": "COUNTRY_CODE" },
+                    "required": 1,
+                    "className": "col-md-4"
+                },
+                {
+                    "id": "minExperience",
+                    "type": "TEXT",
+                    "props": { "label": "Min Exp.", "domainCategoryCode": "" },
+                    "required": 1,
+                    "className": "col-md-4",
+                    "customValidations": "[{expression:\"minExperience > maxExperience\", \"message\": \"Min experience should be less than Max experience\"}]"
+                },
+                {
+                    "id": "maxExperience",
+                    "type": "TEXT",
+                    "props": { "label": "Max Exp.", "domainCategoryCode": "" },
+                    "required": 1,
+                    "className": "col-md-4"
+                }
+            ]
         }
     ]
 }
