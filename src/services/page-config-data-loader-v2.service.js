@@ -57,6 +57,7 @@ const getSectionJSON = (sectionKey, data) => {
     dataId: section["dataId"],
     type: section["type"],
     className: section["className"],
+    hideExpression: section["hideExpression"],
     controlGroup: getSectionControlGroupJSON(section["combinedKey"], data),
   };
 };

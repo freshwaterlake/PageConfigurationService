@@ -1,59 +1,78 @@
 {
-    "id": "jobPosting",
-    "title": "Job Posting",
-    "buttons": "Update, Cancel",
-    "sections": ["jobPosting"],
-    "breadCrumbs": [],
-    "pageTypeCode": "DATA_ENTRY",
-    "sectionRepository": [
+  "id": "studentAdditionalInfo",
+  "title": "Update Additional Information",
+  "buttons": "Update, Cancel",
+  "sections": ["studentAdditionalInfo", "grade"],
+  "breadCrumbs": [
+    { "URL": "https://miles.univariety.com/alumni/dashboard", "Name": "My Dashboard" },
+    { "URL": "https://miles.univariety.com/alumni/myprofile", "Name": "Profile" }
+  ],
+  "pageTypeCode": "DATA_ENTRY",
+  "sectionRepository": [
+    {
+      "id": "studentAdditionalInfo",
+      "type": "SECTION_WITHOUT_HEADER",
+      "title": "",
+      "className": "col-md-12",
+      "controlGroup": [
         {
-            "id": "jobPosting",
-            "type": "SECTION_WITHOUT_HEADER",
-            "title": "",
-            "className": "col-md-12",
-            "controlGroup": [
-                {
-                    "id": "firstName",
-                    "type": "TEXT",
-                    "props": { "label": "First Name", "inputMode": "text", "maxLength": 10, "minLength": 3 },
-                    "required": 1,
-                    "className": "col-md-4"
-                },
-                {
-                    "id": "genderCode",
-                    "type": "RADIO",
-                    "props": {
-                        "label": "Gender Code",
-                        "required": 1,
-                        "domainCategoryCode": "GENDER_CODE",
-                        "radioTextClassName": "col-md-4"
-                    },
-                    "required": 1,
-                    "className": "col-md-4"
-                },
-                {
-                    "id": "countryCode",
-                    "type": "SELECT",
-                    "props": { "label": "Country Code", "domainCategoryCode": "COUNTRY_CODE" },
-                    "required": 1,
-                    "className": "col-md-4"
-                },
-                {
-                    "id": "minExperience",
-                    "type": "TEXT",
-                    "props": { "label": "Min Exp.", "domainCategoryCode": "" },
-                    "required": 1,
-                    "className": "col-md-4",
-                    "customValidations": "[{expression:\"minExperience > maxExperience\", \"message\": \"Min experience should be less than Max experience\"}]"
-                },
-                {
-                    "id": "maxExperience",
-                    "type": "TEXT",
-                    "props": { "label": "Max Exp.", "domainCategoryCode": "" },
-                    "required": 1,
-                    "className": "col-md-4"
-                }
-            ]
+          "id": "addressLine1",
+          "type": "TEXT",
+          "props": {
+            "label": "Address (Apartment/ Street Name)",
+            "maxLength": 100,
+            "placeholder": "Ex: 503, Block -J, Maxwell Apartments",
+            "domainCategoryCode": ""
+          },
+          "className": "col-md-12"
+        },
+        {
+          "id": "addressLine2",
+          "type": "TEXT",
+          "props": {
+            "label": "Address (Locality/ Area)",
+            "maxLength": 100,
+            "placeholder": "Ex: Koramangala, Bangalore",
+            "domainCategoryCode": ""
+          },
+          "className": "col-md-6"
+        },
+        {
+          "id": "pinOrZip",
+          "type": "TEXT",
+          "props": { "label": "Pin Code/Zip Code", "placeholder": "Ex: 500089", "domainCategoryCode": "" },
+          "className": "col-md-6",
+          "customValidations": "[{\"expression\":\"(model?.studentBasicInfo?.residingCountryCode == 100 && data.length == 6) || (model?.studentBasicInfo?.residingCountryCode != 100 && data.length >= 5 && data.length <= 10)\", \"message\": \"Please enter valid PIN code (6 digits)\"}]"
+        },
+        {
+          "id": "class12CurriculumCode",
+          "type": "SELECT",
+          "props": { "label": "Select Your Class 12 Curriculum", "domainCategoryCode": "CLASS_12_CURRICULUM_CODE" },
+          "className": "col-md-6"
         }
-    ]
+      ]
+    },
+    {
+      "id": "grade",
+      "type": "SECTION_WITHOUT_HEADER",
+      "title": "",
+      "dataId": "studentAdditionalInfo",
+      "className": "col-md-12",
+      "controlGroup": [
+        {
+          "id": "gradeAStarCode",
+          "type": "SELECT",
+          "props": { "label": "A*", "domainCategoryCode": "GRADE_A_STAR_CODE" },
+          "className": "col-md-2"
+        },
+        { "id": "gradeACode", "type": "SELECT", "props": { "label": "A", "domainCategoryCode": "GRADE_A_CODE" }, "className": "col-md-2" },
+        { "id": "gradeBCode", "type": "SELECT", "props": { "label": "B", "domainCategoryCode": "GRADE_B_CODE" }, "className": "col-md-2" },
+        { "id": "gradeCCode", "type": "SELECT", "props": { "label": "C", "domainCategoryCode": "GRADE_C_CODE" }, "className": "col-md-2" },
+        { "id": "gradeDCode", "type": "SELECT", "props": { "label": "D", "domainCategoryCode": "GRADE_D_CODE" }, "className": "col-md-2" },
+        { "id": "gradeECode", "type": "SELECT", "props": { "label": "E", "domainCategoryCode": "GRADE_E_CODE" }, "className": "col-md-2" },
+        { "id": "marks", "type": "TEXT", "props": { "label": "Marks", "domainCategoryCode": "" }, "className": "col-md-6" }
+      ],
+      "hideExpression": "!model?.studentAdditionalInfo?.class12CurriculumCode!== \"CIE\""
+    }
+  ]
 }
